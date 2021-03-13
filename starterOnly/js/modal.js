@@ -120,7 +120,8 @@ if (!isNil(closeBtn)) {
 if (!isNil(openMenuBtn)) {
   openMenuBtn.addEventListener("click", () => {
     try {
-      const style = getComputedStyle(menu);
+      const style = getComputedStyle(menu); // Get styles of menu
+      // If menu is hidden, display it, else hide it
       if (style.display === "none") {
         menu.style.display = "flex";
       } else if (style.display === "flex") {
@@ -134,12 +135,18 @@ if (!isNil(openMenuBtn)) {
   console.error("No menu button detected.");
 }
 
+// Add an event listener to check if window is resized.
+// This function is used to display the menu in case of resize from mobile size to desktop
+// Because, with the function to open the menu, it wrotes inline style and it has the priority on style
+// So the display: none; can stay on the menu and hide it on desktop.
+// This function prevent that.
 window.addEventListener("resize", () => {
   try {
-    const width = window.screen.width;
+    const width = window.innerWidth;
     if (width > 768) {
       menu.style.display = "flex";
     }
+    // Here, it hide automaticaly on resize because, the menu appear automaticaly because of inline style
     if (width <= 768) {
       menu.style.display = "none";
     }
