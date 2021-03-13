@@ -150,12 +150,13 @@ footer {
         font-size: 38px;
         padding: unset;
         margin-left: 24px;
-        margin-right: 24px; }
+        margin-right: 24px;
+        margin-top: 18px; }
       .main-container .informations .subtitle {
         margin-left: 24px;
         margin-right: 24px;
         margin-top: 24px;
-        margin-bottom: 18px; }
+        margin-bottom: 8px; }
     .main-container .modal-btn {
       align-self: center;
       margin-top: 12px; }
@@ -163,7 +164,8 @@ footer {
       margin: 24px;
       border-radius: 8px;
       width: calc(100% - 48px);
-      max-height: unset; }
+      max-height: unset;
+      box-shadow: 2px 4px 8px #747474; }
 
   #mobile-modal-btn {
     display: block;

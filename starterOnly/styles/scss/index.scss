@@ -103,6 +103,7 @@ header {
   }
 }
 
+// I use an id instead a class here to manage the priority of style
 #mobile-modal-btn {
   display: none;
 }
@@ -183,13 +184,14 @@ footer {
         padding: unset;
         margin-left: 24px;
         margin-right: 24px;
+        margin-top: 18px;
       }
 
       .subtitle {
         margin-left: 24px;
         margin-right: 24px;
         margin-top: 24px;
-        margin-bottom: 18px;
+        margin-bottom: 8px;
       }
     }
 
@@ -203,6 +205,7 @@ footer {
       border-radius: 8px;
       width: calc(100% - 48px);
       max-height: unset;
+      box-shadow: 2px 4px 8px #747474;
     }
   }
 
