@@ -1,0 +1,133 @@
+@import "./variables.scss";
+
+header {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  margin-top: 24px;
+  margin-bottom: 46px;
+
+  img {
+    width: 200px;
+    height: auto;
+    margin-left: 42px;
+  }
+
+  #menu {
+    display: flex;
+    margin-left: auto;
+    margin-right: 42px;
+
+    .menu-element {
+      margin: 0px 6px;
+      color: $primaryColor;
+      cursor: pointer;
+      padding: 10px 14px;
+      font-family: $font-default;
+      border-radius: 8px;
+
+      &:hover {
+        background-color: $primaryColor;
+        color: #fff;
+        transition-duration: 300ms;
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+#menu-button {
+  display: none;
+  margin-top: 6px;
+  padding: 6px;
+  border-radius: 8px;
+  i {
+    color: $primaryColor;
+    font-size: 22px;
+  }
+  &:hover {
+    background-color: $primaryColor;
+    transition-duration: 300ms;
+    i {
+      color: #fff;
+    }
+  }
+}
+
+footer {
+  margin: 20px;
+  padding: 10px;
+  font-family: $font-default;
+  color: $primaryColor;
+  font-weight: bold;
+}
+
+@keyframes fadingTop {
+  from {
+    opacity: 0;
+    margin-top: 10%;
+  }
+
+  to {
+    opacity: 1;
+    margin-left: 0%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  header {
+    flex-wrap: wrap;
+
+    #menu-button {
+      display: flex;
+      margin-left: auto;
+      margin-right: 42px;
+    }
+
+    #menu {
+      flex-direction: column;
+      margin-top: 18px;
+      margin-right: unset;
+      margin-left: inherit;
+      width: 100%;
+      border-top: 1px solid $primaryColor;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 1px 1px 3px $primaryColor;
+      display: none;
+      .menu-element {
+        margin-left: 0%;
+        width: 100%;
+        align-self: center;
+        border-bottom: 1px solid $primaryColor;
+        border-radius: 0px;
+        animation-name: fadingTop;
+        animation-duration: 800ms;
+        animation-iteration-count: 1;
+      }
+    }
+  }
+
+  footer {
+    font-size: 14px;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  header {
+    img {
+      width: 120px;
+      height: auto;
+      margin-left: 18px;
+    }
+
+    #menu-button {
+      margin-right: 18px;
+      margin-top: 4px;
+
+      i {
+        font-size: 16px;
+      }
+    }
+  }
+}
