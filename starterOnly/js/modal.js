@@ -70,7 +70,7 @@ const launchModal = (modalBg) => {
   try {
     const width = window.innerWidth;
     // I check if the view is mobile
-    if (width <= 786) {
+    if (width <= 500) {
       // If the modal is open on mobile view, I scroll top 0 to see the header
       // Logicaly, the button of menu is unaccessible even if we close modal
       // It's related to bground element.
