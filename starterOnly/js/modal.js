@@ -67,11 +67,33 @@ const getMenu = () => {
 // Function to launch the modal form
 const launchModal = (modalBg) => {
   if (!isNil(modalBg)) modalBg.style.display = "block";
+  try {
+    const width = window.innerWidth;
+    // I check if the view is mobile
+    if (width <= 786) {
+      // If the modal is open on mobile view, I scroll top 0 to see the header
+      // Logicaly, the button of menu is unaccessible even if we close modal
+      // It's related to bground element.
+      // For the moment, I consider this behaviour as expected
+      // If needed, apply pointer-events: none; to bground on mobile
+      // But you will have to manage the display of menu with open modal
+      window.scrollTo({
+        top: 0,
+      });
+      // Disable scrolling when modal is open on mobile
+      document.body.style.position = "fixed";
+    }
+  } catch (err) {
+    console.error(err);
+  }
 };
 
 // Function to close the modal form
 const closeModal = (modalBg) => {
   if (!isNil(modalBg)) modalBg.style.display = "none";
+  // No need to check for mobile : if we close the modal
+  // Apply relative position to active the scroll on body
+  document.body.style.position = "relative";
 };
 
 // Function to open the menu
@@ -154,3 +176,7 @@ window.addEventListener("resize", () => {
     console.error(err);
   }
 });
+
+const validate = () => {
+  console.log("Validate");
+};

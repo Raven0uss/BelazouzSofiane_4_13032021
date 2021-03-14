@@ -446,5 +446,15 @@ input {
   background-color: rgba(0, 0, 0, 0.1); }
 
 /* custom select end */
+@media screen and (max-width: 768px) {
+  .bground {
+    background: none; }
+
+  .content {
+    margin: unset;
+    height: calc(100% - 64px);
+    margin-top: 64px;
+    border-radius: unset;
+    overflow-y: auto; } }
 
 /*# sourceMappingURL=style.css.map */
