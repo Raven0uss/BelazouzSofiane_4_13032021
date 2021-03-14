@@ -169,32 +169,60 @@ window.addEventListener("resize", () => {
 });
 
 const validate = () => {
-  console.log("Validate called");
+  // This is the object with all informations of form.
+  // Next step, fill it.
+  const inputs = {
+    first: "",
+    last: "",
+    email: "",
+    birthdate: "",
+    quantity: 0,
+    location: [],
+    cgu: false,
+    eventReminder: false,
+  };
 
+  // I loop on all the form data block
   formData.forEach((data) => {
+    // I get the childNodes element inside the form data block
     const childNodes = data.childNodes;
-    const inputs = {
-      first: "",
-      last: "",
-      email: "",
-      birthdate: "",
-      quantity: "",
-      location: [],
-      cgu: false,
-      event: false,
-    };
 
     childNodes.forEach((node) => {
+      // I am interessted only by INPUT elements to get informations and content
       if (node.nodeName === "INPUT") {
-        console.log("====");
-        console.log(node.name);
-        console.log(node.id);
-        console.log(node.type);
-        console.log(node.value);
-        console.log("====");
+        switch (node.name) {
+          case "first":
+          case "last":
+          case "email":
+          case "birthdate":
+            inputs[node.name] = node.value; // It's text value here, so I just take value
+            break;
+          case "quantity":
+            // For quantity, I automaticaly convert into integer
+            // If the field is empty, I consider the value as 0
+            const quantity = node.value;
+            if (quantity === "") inputs.quantity = 0;
+            else inputs.quantity = parseInt(quantity, 10);
+          case "location":
+            // I push the locations inside an array if the radio is checked
+            if (node.checked) inputs.location.push(node.value);
+            break;
+          case "":
+            // The node.name for the checkboxes is empty
+            // (I could modify the HTML but let's take the challenge to take as it is for the exercise :) )
+            // So, I look the id, it is different for cgu and eventReminder
+            // The default value in inputs object is false, so I just change if it's checked
+            if (node.id === "checkbox1" && node.checked) inputs.cgu = true;
+            else if (node.id === "checkbox2" && node.checked)
+              inputs.eventReminder = true;
+            break;
+          default:
+            break;
+        }
       }
     });
   });
 
+  console.log(inputs);
   return false;
 };
