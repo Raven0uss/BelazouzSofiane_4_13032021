@@ -1,12 +1,3 @@
-// function editNav() {
-//   var x = document.getElementById("myTopnav");
-//   if (x.className === "topnav") {
-//     x.className += " responsive";
-//   } else {
-//     x.className = "topnav";
-//   }
-// }
-
 // Function to check if an element is valid, to avoid the script to crash if an error occured.
 const isNil = (element) => {
   return element === undefined || element === null;
@@ -112,7 +103,7 @@ const modalBtn = getOpenModalButton();
 const closeBtn = getCloseModalButton();
 const openMenuBtn = getOpenMenuButton();
 const menu = getMenu();
-// const formData = document.querySelectorAll(".formData");
+const formData = document.querySelectorAll(".formData");
 
 // Add listener to all the modal buttons.
 // Attached the function to lauchn the modal with the click event.
@@ -178,5 +169,32 @@ window.addEventListener("resize", () => {
 });
 
 const validate = () => {
-  console.log("Validate");
+  console.log("Validate called");
+
+  formData.forEach((data) => {
+    const childNodes = data.childNodes;
+    const inputs = {
+      first: "",
+      last: "",
+      email: "",
+      birthdate: "",
+      quantity: "",
+      location: [],
+      cgu: false,
+      event: false,
+    };
+
+    childNodes.forEach((node) => {
+      if (node.nodeName === "INPUT") {
+        console.log("====");
+        console.log(node.name);
+        console.log(node.id);
+        console.log(node.type);
+        console.log(node.value);
+        console.log("====");
+      }
+    });
+  });
+
+  return false;
 };
