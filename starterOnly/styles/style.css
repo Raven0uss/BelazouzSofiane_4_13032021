@@ -38,7 +38,8 @@ header {
   display: none;
   margin-top: 6px;
   padding: 6px;
-  border-radius: 8px; }
+  border-radius: 8px;
+  cursor: pointer; }
   #menu-button i {
     color: #ff0000;
     font-size: 22px; }
