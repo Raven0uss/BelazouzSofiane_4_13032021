@@ -33,7 +33,10 @@ header {
         background-color: #ff0000;
         color: #fff;
         transition-duration: 300ms;
-        text-decoration: underline; }
+        text-decoration: none; }
+    header #menu .menu-element-active {
+      background-color: #ff0000;
+      color: #fff; }
 
 #menu-button {
   display: none;

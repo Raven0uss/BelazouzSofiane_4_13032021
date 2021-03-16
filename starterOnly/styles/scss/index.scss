@@ -31,8 +31,12 @@ header {
         background-color: $primaryColor;
         color: #fff;
         transition-duration: 300ms;
-        text-decoration: underline;
+        text-decoration: none;
       }
+    }
+    .menu-element-active {
+      background-color: $primaryColor;
+      color: #fff;
     }
   }
 }
