@@ -26,7 +26,7 @@
 }
 
 .bground {
-  display: block;
+  display: none;
   position: fixed;
   z-index: 1;
   left: 0;
@@ -62,7 +62,8 @@ label {
   font-size: 17px;
   font-weight: normal;
   display: inline-block;
-  margin-bottom: 11px;
+  margin-bottom: 7px;
+  margin-top: 10px;
 }
 input {
   padding: 8px;
@@ -201,6 +202,7 @@ input {
   color: #fff;
   cursor: pointer;
   border: 0;
+  margin-top: 10px;
 }
 /* custom select styles */
 .custom-select {
@@ -282,4 +284,11 @@ input {
     border-radius: unset;
     overflow-y: auto;
   }
+}
+
+.input-error-messages {
+  color: red;
+  font-family: $font-default;
+  font-size: 12px;
+  margin-top: 3px;
 }

@@ -3,6 +3,8 @@ const isNil = (element) => {
   return element === undefined || element === null;
 };
 
+const emailRegex = /(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])/;
+
 // Functions to get the elements of DOM
 // Advantage of this process, we can check quickly if an error occured.
 const getModalBackground = () => {
@@ -168,19 +170,151 @@ window.addEventListener("resize", () => {
   }
 });
 
+const createSpanErrorMessage = (message) => {
+  const span = document.createElement("span");
+  span.className = "input-error-messages";
+  span.innerHTML = message;
+  return span;
+};
+
+const checkInputs = (inputs) => {
+  let errors = false;
+
+  // Get the previous error messages
+  const previousMessagesError = document.querySelectorAll(
+    ".input-error-messages"
+  );
+  // Remove the previous error messages
+  previousMessagesError.forEach((element) => element.remove());
+
+  // Create a span to display error messages
+
+  if (
+    inputs.first.value.match(/^[A-Za-z]+$/) === false ||
+    inputs.first.value.length >= 2 === false
+  ) {
+    inputs.first.node.after(
+      createSpanErrorMessage(
+        "Ce champs doit contenir au minimun 2 caractères alphabétiques."
+      )
+    );
+    errors = true;
+  }
+  if (
+    inputs.last.value.match(/^[A-Za-z]+$/) === false ||
+    inputs.last.value.length >= 2 === false
+  ) {
+    inputs.last.node.after(
+      createSpanErrorMessage(
+        "Ce champs doit contenir au minimun 2 caractères alphabétiques."
+      )
+    );
+    errors = true;
+  }
+  if (
+    emailRegex.test(inputs.email.value) === false ||
+    inputs.email.value.length > 0 === false
+  ) {
+    inputs.email.node.after(
+      createSpanErrorMessage(
+        "Ce champs doit contenir une adresse email valide."
+      )
+    );
+    errors = true;
+  }
+  if (inputs.birthdate.value.length > 0 === false) {
+    inputs.birthdate.node.after(
+      createSpanErrorMessage("Ce champs doit contenir une date valide.")
+    );
+    errors = true;
+  }
+
+  if (
+    inputs.quantity.value >= 0 === false ||
+    inputs.quantity.value <= 99 === false
+  ) {
+    inputs.quantity.node.after(
+      createSpanErrorMessage(
+        "Ce champs doit contenir un nombre compris entre 0 et 99."
+      )
+    );
+    errors = true;
+  }
+
+  if (inputs.location.value.length === 0) {
+    inputs.location.node.after(
+      createSpanErrorMessage(
+        "Sélectionnez la ville où participer au tournoi GameOn."
+      )
+    );
+    errors = true;
+  }
+
+  if (inputs.cgu.value === false) {
+    inputs.cgu.node.after(
+      createSpanErrorMessage(
+        "Vous devez accepter les conditions d'utilisation."
+      )
+    );
+    errors = true;
+  }
+
+  return errors;
+};
+
+document.addEventListener(
+  "invalid",
+  // Change the callback for invalid form to disable the native process
+  (() => (e) => {
+    // Prevent the browser from showing default error bubble
+    e.preventDefault();
+  })(),
+  true
+);
+
 const validate = () => {
   // This is the object with all informations of form.
   // Next step, fill it.
   const inputs = {
-    first: "",
-    last: "",
-    email: "",
-    birthdate: "",
-    quantity: 0,
-    location: [],
-    cgu: false,
-    eventReminder: false,
+    first: {
+      value: "",
+      node: null,
+    },
+    last: {
+      value: "",
+      node: null,
+    },
+    email: {
+      value: "",
+      node: null,
+    },
+    birthdate: {
+      value: "",
+      node: null,
+    },
+    quantity: {
+      value: 0,
+      node: null,
+    },
+    location: {
+      value: "",
+      node: null,
+    },
+    cgu: {
+      value: false,
+      node: null,
+    },
+    eventReminder: {
+      value: false,
+      node: null,
+    },
   };
+
+  const checkboxContainer = document.querySelector(".checkbox-container");
+  const locationContainer = document.querySelector(".location-container");
+
+  inputs.cgu.node = checkboxContainer;
+  inputs.location.node = locationContainer;
 
   // I loop on all the form data block
   formData.forEach((data) => {
@@ -195,26 +329,31 @@ const validate = () => {
           case "last":
           case "email":
           case "birthdate":
-            inputs[node.name] = node.value; // It's text value here, so I just take value
+            inputs[node.name].value = node.value; // It's text value here, so I just take value
+            inputs[node.name].node = node;
             break;
           case "quantity":
             // For quantity, I automaticaly convert into integer
             // If the field is empty, I consider the value as 0
             const quantity = node.value;
-            if (quantity === "") inputs.quantity = 0;
-            else inputs.quantity = parseInt(quantity, 10);
+            if (quantity === "") inputs.quantity.value = 0;
+            else inputs.quantity.value = parseInt(quantity, 10);
+            inputs.quantity.node = node;
           case "location":
             // I push the locations inside an array if the radio is checked
-            if (node.checked) inputs.location.push(node.value);
+            if (node.checked) inputs.location.value = node.value;
             break;
           case "":
             // The node.name for the checkboxes is empty
             // (I could modify the HTML but let's take the challenge to take as it is for the exercise :) )
             // So, I look the id, it is different for cgu and eventReminder
             // The default value in inputs object is false, so I just change if it's checked
-            if (node.id === "checkbox1" && node.checked) inputs.cgu = true;
+
+            if (node.id === "checkbox1" && node.checked)
+              inputs.cgu.value = true;
             else if (node.id === "checkbox2" && node.checked)
-              inputs.eventReminder = true;
+              inputs.eventReminder.value = true;
+
             break;
           default:
             break;
@@ -223,6 +362,18 @@ const validate = () => {
     });
   });
 
-  console.log(inputs);
-  return false;
+  const errors = checkInputs(inputs);
+  if (errors) {
+    // If there is an error, I scroll to the top.
+    const modalContent = document.querySelector(".content");
+    modalContent.scrollTo({
+      top: 0,
+    });
+  } else {
+    // If the form is valid, I close the modal
+    // The future request to send data to the server will be here.
+    closeModal(modalBg);
+    alert("Merci ! Votre réservation a été reçue.");
+  }
+  return errors;
 };

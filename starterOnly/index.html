@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
   <head>
     <meta charset="utf-8" />
     <title>Reservation</title>
@@ -54,12 +54,7 @@
         <div class="content">
           <span class="close"></span>
           <div class="modal-body">
-            <form
-              name="reserve"
-              action="index.html"
-              method="get"
-              onsubmit="return validate();"
-            >
+            <form name="reserve" action="index.html" method="get">
               <div class="formData">
                 <label>Prénom</label><br />
                 <input
@@ -68,6 +63,7 @@
                   id="first"
                   name="first"
                   minlength="2"
+                  required
                 /><br />
               </div>
               <div class="formData">
@@ -77,6 +73,8 @@
                   type="text"
                   id="last"
                   name="last"
+                  minlength="2"
+                  required
                 /><br />
               </div>
               <div class="formData">
@@ -86,6 +84,7 @@
                   type="email"
                   id="email"
                   name="email"
+                  required
                 /><br />
               </div>
               <div class="formData">
@@ -95,6 +94,7 @@
                   type="date"
                   id="birthdate"
                   name="birthdate"
+                  required
                 /><br />
               </div>
               <div class="formData">
@@ -109,10 +109,11 @@
                   name="quantity"
                   min="0"
                   max="99"
+                  value="0"
                 />
               </div>
-              <p class="text-label">Quelles villes ?</p>
-              <div class="formData">
+              <label>Choisissez une ville</label>
+              <div class="formData location-container">
                 <input
                   class="checkbox-input"
                   type="radio"
@@ -181,7 +182,7 @@
                 >
               </div>
 
-              <div class="formData">
+              <div class="formData checkbox-container">
                 <input
                   class="checkbox-input"
                   type="checkbox"
@@ -196,16 +197,19 @@
                 <input class="checkbox-input" type="checkbox" id="checkbox2" />
                 <label class="checkbox2-label" for="checkbox2">
                   <span class="checkbox-icon"></span>
-                  Je Je souhaite être prévenu des prochains évènements.
+                  Je souhaite être prévenu des prochains évènements.
                 </label>
                 <br />
               </div>
-              <input
+              <button
                 class="btn-submit"
                 type="submit"
                 class="button"
                 value="C'est parti"
-              />
+                onclick="validate();"
+              >
+                C'est parti
+              </button>
             </form>
           </div>
         </div>
