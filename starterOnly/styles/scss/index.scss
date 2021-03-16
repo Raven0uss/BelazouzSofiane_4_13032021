@@ -19,12 +19,13 @@ header {
     margin-right: 42px;
 
     .menu-element {
-      margin: 0px 6px;
+      margin: 0px 4px;
       color: $primaryColor;
       cursor: pointer;
-      padding: 10px 14px;
+      padding: 10px 10px;
       font-family: $font-default;
       border-radius: 8px;
+      text-align: center;
 
       &:hover {
         background-color: $primaryColor;

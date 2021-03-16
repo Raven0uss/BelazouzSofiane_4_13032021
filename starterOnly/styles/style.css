@@ -22,12 +22,13 @@ header {
     margin-left: auto;
     margin-right: 42px; }
     header #menu .menu-element {
-      margin: 0px 6px;
+      margin: 0px 4px;
       color: #ff0000;
       cursor: pointer;
-      padding: 10px 14px;
+      padding: 10px 10px;
       font-family: "DM Sans", Arial, Helvetica, sans-serif;
-      border-radius: 8px; }
+      border-radius: 8px;
+      text-align: center; }
       header #menu .menu-element:hover {
         background-color: #ff0000;
         color: #fff;
