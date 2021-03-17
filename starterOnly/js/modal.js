@@ -82,9 +82,24 @@ const launchModal = (modalBg) => {
   }
 };
 
+// DOM Elements
+const modalBg = getModalBackground();
+const modalBtn = getOpenModalButton();
+const closeBtn = getCloseModalButton();
+const openMenuBtn = getOpenMenuButton();
+const menu = getMenu();
+
+const formData = document.querySelectorAll(".formData");
+const modalForm = document.querySelector("#form");
+
 // Function to close the modal form
-const closeModal = (modalBg) => {
+const closeModal = () => {
+  const successContainer = document.querySelector(".thanks-container");
+  successContainer.remove();
+
   if (!isNil(modalBg)) modalBg.style.display = "none";
+  if (!isNil(modalForm)) modalForm.style.display = "block";
+
   // No need to check for mobile : if we close the modal
   // Apply relative position to active the scroll on body
   document.body.style.position = "relative";
@@ -99,14 +114,6 @@ const openMenu = (menuComponent) => {
 const closeMenu = (menuComponent) => {
   if (!isNil(menuComponent)) menuComponent.style.display = "none";
 };
-
-// DOM Elements
-const modalBg = getModalBackground();
-const modalBtn = getOpenModalButton();
-const closeBtn = getCloseModalButton();
-const openMenuBtn = getOpenMenuButton();
-const menu = getMenu();
-const formData = document.querySelectorAll(".formData");
 
 // Add listener to all the modal buttons.
 // Attached the function to lauchn the modal with the click event.
@@ -125,7 +132,7 @@ if (!isNil(modalBtn)) {
 // Attached the function to close the modal with the click event.
 if (!isNil(closeBtn)) {
   closeBtn.addEventListener("click", () => {
-    closeModal(modalBg);
+    closeModal();
   });
 } else {
   console.error("No close button detected.");
@@ -176,6 +183,16 @@ const createSpanErrorMessage = (message) => {
   span.className = "input-error-messages";
   span.innerHTML = message;
   return span;
+};
+
+const createElementSuccess = () => {
+  const div = document.createElement("div");
+  div.className = "thanks-container";
+  div.innerHTML = `
+  <p class="thanks-message">Merci pour votre inscription !</p>
+  <button class="btn-submit thanks-close-btn" onclick="closeModal();">Fermer</button>
+  `;
+  return div;
 };
 
 const checkInputs = (inputs) => {
@@ -363,18 +380,16 @@ const validate = () => {
     });
   });
 
-  const errors = checkInputs(inputs);
-  if (errors) {
-    // If there is an error, I scroll to the top.
-    const modalContent = document.querySelector(".content");
-    modalContent.scrollTo({
-      top: 0,
-    });
-  } else {
-    // If the form is valid, I close the modal
-    // The future request to send data to the server will be here.
-    closeModal(modalBg);
-    alert("Merci ! Votre réservation a été reçue.");
-  }
-  return errors;
+  // const errors = checkInputs(inputs);
+  // if (errors) {
+  //   // If there is an error, I scroll to the top.
+  //   const modalContent = document.querySelector(".content");
+  //   modalContent.scrollTo({
+  //     top: 0,
+  //   });
+  // } else {
+  modalForm.style.display = "none";
+  modalForm.after(createElementSuccess());
+  // }
+  return false;
 };

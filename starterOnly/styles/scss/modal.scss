@@ -55,6 +55,11 @@
 .modal-body {
   padding: 15px 8%;
   margin: 15px auto;
+  min-height: calc(100% - 30px);
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 label {
@@ -291,4 +296,22 @@ input {
   font-family: $font-default;
   font-size: 12px;
   margin-top: 3px;
+}
+
+.thanks-message {
+  font-family: $font-default;
+  font-size: 22px;
+  text-align: center;
+}
+
+.thanks-container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.thanks-close-btn {
+  margin-top: 32px;
 }

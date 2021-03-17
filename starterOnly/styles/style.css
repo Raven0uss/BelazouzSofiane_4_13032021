@@ -74,7 +74,7 @@ header {
     .main-container .informations .title {
       font-family: "DM Sans", Arial, Helvetica, sans-serif;
       font-weight: bold;
-      font-size: 5rem;
+      font-size: 4.5rem;
       white-space: nowrap; }
     .main-container .informations .subtitle {
       font-family: "DM Sans", Arial, Helvetica, sans-serif;
@@ -245,7 +245,12 @@ footer {
 
 .modal-body {
   padding: 15px 8%;
-  margin: 15px auto; }
+  margin: 15px auto;
+  min-height: calc(100% - 30px);
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; }
 
 label {
   font-family: "DM Sans", Arial, Helvetica, sans-serif;
@@ -469,5 +474,20 @@ input {
   font-family: "DM Sans", Arial, Helvetica, sans-serif;
   font-size: 12px;
   margin-top: 3px; }
+
+.thanks-message {
+  font-family: "DM Sans", Arial, Helvetica, sans-serif;
+  font-size: 22px;
+  text-align: center; }
+
+.thanks-container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; }
+
+.thanks-close-btn {
+  margin-top: 32px; }
 
 /*# sourceMappingURL=style.css.map */
