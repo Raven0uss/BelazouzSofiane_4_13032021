@@ -380,16 +380,16 @@ const validate = () => {
     });
   });
 
-  // const errors = checkInputs(inputs);
-  // if (errors) {
-  //   // If there is an error, I scroll to the top.
-  //   const modalContent = document.querySelector(".content");
-  //   modalContent.scrollTo({
-  //     top: 0,
-  //   });
-  // } else {
-  modalForm.style.display = "none";
-  modalForm.after(createElementSuccess());
-  // }
+  const errors = checkInputs(inputs);
+  if (errors) {
+    // If there is an error, I scroll to the top.
+    const modalContent = document.querySelector(".content");
+    modalContent.scrollTo({
+      top: 0,
+    });
+  } else {
+    modalForm.style.display = "none";
+    modalForm.after(createElementSuccess());
+  }
   return false;
 };

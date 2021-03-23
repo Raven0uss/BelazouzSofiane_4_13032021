@@ -231,6 +231,7 @@ footer {
   z-index: 20; }
 
 .content {
+  display: flex;
   margin: 5% auto;
   width: 100%;
   max-width: 500px;
@@ -241,7 +242,9 @@ footer {
   overflow: hidden;
   position: relative;
   color: #fff;
-  padding-top: 10px; }
+  padding-top: 10px;
+  min-height: 80%;
+  overflow-y: auto; }
 
 .modal-body {
   padding: 15px 8%;
@@ -464,6 +467,7 @@ input {
     background: none; }
 
   .content {
+    display: block;
     margin: unset;
     height: calc(100% - 64px);
     margin-top: 64px;
@@ -481,13 +485,16 @@ input {
   text-align: center; }
 
 .thanks-container {
-  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center; }
+  justify-content: center;
+  height: 100%;
+  align-self: center; }
 
 .thanks-close-btn {
-  margin-top: 32px; }
+  margin-bottom: 24px;
+  position: absolute;
+  bottom: 0; }
 
 /*# sourceMappingURL=style.css.map */
