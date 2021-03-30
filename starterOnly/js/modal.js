@@ -91,14 +91,16 @@ const menu = getMenu();
 
 const formData = document.querySelectorAll(".formData");
 const modalForm = document.querySelector("#form");
+const modalBody = document.querySelector(".modal-body");
 
 // Function to close the modal form
 const closeModal = () => {
   const successContainer = document.querySelector(".thanks-container");
-  successContainer.remove();
+  if (!isNil(successContainer)) successContainer.remove();
 
   if (!isNil(modalBg)) modalBg.style.display = "none";
   if (!isNil(modalForm)) modalForm.style.display = "block";
+  if (!isNil(modalBody)) modalBody.style["justify-content"] = "unset";
 
   // No need to check for mobile : if we close the modal
   // Apply relative position to active the scroll on body
@@ -186,6 +188,8 @@ const createSpanErrorMessage = (message) => {
 };
 
 const createElementSuccess = () => {
+  if (!isNil(modalBody)) modalBody.style["justify-content"] = "center";
+
   const div = document.createElement("div");
   div.className = "thanks-container";
   div.innerHTML = `

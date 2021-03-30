@@ -252,8 +252,7 @@ footer {
   min-height: calc(100% - 30px);
   align-items: center;
   display: flex;
-  flex-direction: column;
-  justify-content: center; }
+  flex-direction: column; }
 
 label {
   font-family: "DM Sans", Arial, Helvetica, sans-serif;
