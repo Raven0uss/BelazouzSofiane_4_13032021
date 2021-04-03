@@ -43,7 +43,7 @@
           </button>
         </div>
 
-        <img src="ressources/images/bg_img.jpg" />
+        <img src="ressources/images/bg_img.jpg" alt="Background image"/>
       </div>
 
       <button class="btn-signup modal-btn" id="mobile-modal-btn">
@@ -189,8 +189,9 @@
                   type="checkbox"
                   id="checkbox1"
                   checked
+                  required
                 />
-                <label class="checkbox2-label" for="checkbox1" required>
+                <label class="checkbox2-label" for="checkbox1">
                   <span class="checkbox-icon"></span>
                   J'ai lu et accepté les conditions d'utilisation.
                 </label>
@@ -203,9 +204,8 @@
                 <br />
               </div>
               <button
-                class="btn-submit"
+                class="btn-submit button"
                 type="submit"
-                class="button"
                 value="C'est parti"
                 onclick="return validate();"
               >
